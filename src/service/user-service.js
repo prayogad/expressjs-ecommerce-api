@@ -73,8 +73,8 @@ const login = async (request) => {
             username: userInDatabase.username
         },
         select: {
-            token: true,
-            username: true
+            username: true,
+            token: true
         }
     });
 

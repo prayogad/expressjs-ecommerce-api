@@ -5,7 +5,7 @@ const register = async (req, res, next) => {
         const result = await userService.register(req.body);
         res.status(200).json({
             success: true,
-            message: `Successfully registered as user, you can now login, wellcum ${result.username}`,
+            message: 'Successfully registered as user, you can now login',
             data: result
         });
     } catch (e) {
@@ -19,7 +19,7 @@ const login = async (req, res, next) => {
         res.cookie('auth', result.token, { path: '/', signed: true, expires: new Date(Date.now() + 90000) });
         res.status(200).json({
             success: true,
-            message: `Login Successfully, welcum ${result.username}`,
+            message: `Login user successfully`,
             data: result
         });
     } catch (e) {
@@ -34,7 +34,7 @@ const logout = async (req, res, next) => {
         res.clearCookie('auth', { path: '/' });
         res.status(200).json({
             success: true,
-            message: `Logout successfully, bye ${result.username}`
+            message: `Logout user successfully`
         })
     } catch (e) {
         next(e)
@@ -47,7 +47,7 @@ const update = async (req, res, next) => {
         const result = await userService.update(username, req.body);
         res.status(200).json({
             success: true,
-            message: `Successfully updated account ingfo`,
+            message: `Successfully updated user data`,
             data: result
         });
     } catch (e) {
@@ -63,7 +63,7 @@ const addToCart = async (req, res, next) => {
 
         res.status(200).json({
             success: true,
-            message: 'Success',
+            message: 'Successfully add product to cart',
             data: result
         });
     } catch (e) {
@@ -78,7 +78,7 @@ const fetchCart = async (req, res, next) => {
 
         res.status(200).json({
             success: true,
-            message: 'Success fetch cart data',
+            message: 'Successfully fetch cart data',
             data: result
         });
     } catch (e) {
@@ -93,7 +93,7 @@ const updateCart = async (req, res, next) => {
 
         res.status(200).json({
             success: true,
-            message: 'Successfuly update cart data',
+            message: 'Successfully update cart data',
             data: result
         })
     } catch (e) {
@@ -109,7 +109,7 @@ const deleteCart = async (req, res, next) => {
 
         res.status(200).json({
             success: true,
-            message: 'Successfuly delete cart',
+            message: 'Successfully delete cart',
             data: result
         })
     } catch (e) {
@@ -125,7 +125,7 @@ const addPayemnt = async (req, res, next) => {
 
         res.status(200).json({
             success: true,
-            message: "Sucess add payment",
+            message: "Successfully add payment",
             data: result
         })
     } catch (e) {
@@ -140,7 +140,7 @@ const showPayment = async (req, res, next) => {
 
         res.status(200).json({
             success: true,
-            message: "Succes fetch payment data",
+            message: "Successfully fetch payment data",
             data: result
         })
     } catch (e) {

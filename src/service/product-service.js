@@ -31,7 +31,6 @@ const getDetailProduct = async (product_id) => {
 
 const searchProduct = async (request) => {
     const productRequest = validate(searchProductValidation, request);
-    console.info(productRequest.name + "===================================")
 
     // const serching = [];
     // serching.push({

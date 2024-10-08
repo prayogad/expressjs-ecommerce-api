@@ -6,7 +6,7 @@ const login = async (req, res, next) => {
         res.cookie('auth', result.token, { path: '/', signed: true, expires: new Date(Date.now() + 90000) });
         res.status(200).json({
             success: true,
-            message: `Login as Admin Success, welcum ${result.username}`,
+            message: `Successfully login as admin`,
             data: result
         });
     } catch (e) {
