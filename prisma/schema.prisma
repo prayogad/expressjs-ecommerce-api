@@ -1,0 +1,88 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  username String    @id @db.VarChar(100)
+  email    String    @db.VarChar(100)
+  phone    String    @db.VarChar(100)
+  password String    @db.VarChar(100)
+  address  String?
+  token    String?   @db.VarChar(100)
+  cart     Carts[]
+  payment  Payment[]
+
+  @@unique(fields: [email, phone])
+  @@map("users")
+}
+
+model Carts {
+  quantity Int
+  user_username String   @db.VarChar(100)
+  product_id    Int
+  users         Users    @relation(fields: [user_username], references: [username])
+  products      Products @relation(fields: [product_id], references: [id])
+
+  @@id([user_username, product_id])
+  @@map("carts")
+}
+
+model Admin {
+  username String  @id @db.VarChar(100)
+  password String  @db.VarChar(100)
+  token    String? @db.VarChar(100)
+
+  @@map("admin")
+}
+
+model Products {
+  id            Int             @id @default(autoincrement())
+  name          String          @db.VarChar(100)
+  description   String
+  price         String          @db.VarChar(100)
+  createdAt     DateTime        @default(now()) @db.Timestamptz(0)
+  pictures      Pictures[]
+  cart          Carts[]
+  detailPayment DetailPayment[]
+
+  @@map("products")
+}
+
+model Pictures {
+  id          Int      @id @default(autoincrement())
+  picture_url String
+  product_id  Int
+  product     Products @relation(fields: [product_id], references: [id])
+
+  @@map("pictures")
+}
+
+model Payment {
+  id              Int             @id @default(autoincrement())
+  total_price     Int
+  payment_status  String          @db.VarChar(100)
+  shipment_status String          @db.VarChar(100)
+  expedition      String
+  createdAt       DateTime        @default(now()) @db.Timestamptz(0)
+  user_username   String          @db.VarChar(100)
+  users           Users           @relation(fields: [user_username], references: [username])
+  detailPayment   DetailPayment[]
+
+  @@map("payment")
+}
+
+model DetailPayment {
+  payment_id Int
+  product_id Int
+  quantity Int
+  payment    Payment  @relation(fields: [payment_id], references: [id])
+  products   Products @relation(fields: [product_id], references: [id])
+
+  @@id([payment_id, product_id])
+  @@map("detail_payment")
+}
