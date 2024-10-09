@@ -10,7 +10,7 @@ privateRoute.use(authMiddleware);
 // Admin
 privateRoute.post("/admin/logout", adminController.logout);
 privateRoute.post("/admin/addProduct", adminController.addProduct);
-privateRoute.post("/admin/updateProduct/:id", adminController.updateProduct);
+privateRoute.put("/admin/updateProduct/:id", adminController.updateProduct);
 privateRoute.delete("/admin/deleteProduct/:id", adminController.deleteProduct);
 privateRoute.put("/admin/confirmPayment/:id", adminController.confirmPayment);
 

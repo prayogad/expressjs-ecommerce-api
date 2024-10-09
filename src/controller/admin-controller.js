@@ -20,7 +20,7 @@ const logout = async (req, res, next) => {
         res.clearCookie('auth', { path: '/' });
         res.status(200).json({
             success: true,
-            message: `Success logout admin, bye ${result.username}`
+            message: `Successfully logout admin`
         })
     } catch (e) {
         next(e)

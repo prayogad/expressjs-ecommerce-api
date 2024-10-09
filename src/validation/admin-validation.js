@@ -20,8 +20,8 @@ const updateProductValidation = Joi.object({
 });
 
 const confirmPaymentValidation = Joi.object({
-    paymentStatus: Joi.string().allow('Menunggu Pembayaran', 'Pembayaran Sudah Diverifikasi').required(),
-    shipment_status: Joi.string().allow('Proses Verifikasi', 'Sedang dikirim'),
+    paymentStatus: Joi.string().allow('Waiting Payment', 'Payment Verified').required(),
+    shipment_status: Joi.string().allow('Verification Process', 'On Shipment'),
 })
 
 export {

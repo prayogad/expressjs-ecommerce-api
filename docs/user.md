@@ -325,3 +325,14 @@ Response Body (Success) :
     ]
 }
 ```
+
+## Error Response
+
+Response Body (Failed) :
+
+```json
+{
+  "success" : false,
+  "message" : "Unauthorized"
+}
+```
